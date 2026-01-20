@@ -1,23 +1,521 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <style>
+        /* Base Styles for a clean, professional look */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7; /* Increased line-height for readability */
+            color: #333;
+            background: #f8f8f8; /* Softer background color */
+        }
+        header, section, footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem; /* Consistent padding */
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow effect */
+        }
+        header {
+            background: linear-gradient(135deg, #00a8a8, #008c8c); /* Soft blue-green gradient */
+            color: #fff;
+            padding: 40px 20px;
+            margin-bottom: 0; /* No margin below header for seamless transition to nav */
+            border-radius: 0; /* Remove top border-radius for full width effect */
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        header p {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        nav {
+            background: #008c8c; /* Darker shade for contrast */
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 20px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.9;
+            transition: opacity 0.3s, background-color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        nav a:hover {
+            opacity: 1;
+            background-color: #007a7a;
+            text-decoration: none;
+        }
+
+        /* Content Headings */
+        h2 {
+            font-size: 1.8rem;
+            color: #00a8a8;
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00a8a8;
+            padding-left: 10px;
+        }
+        h4 {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Key Information Cards */
+        .info-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-card li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        .info-card li strong {
+            color: #00a8a8;
+        }
+
+        /* CTA Button Styling */
+        .cta {
+            display: inline-block;
+            background-color: #00a8a8;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin-top: 20px;
+        }
+        .cta:hover {
+            background-color: #008c8c;
+            transform: translateY(-2px);
+        }
+
+        /* Form Styling */
+        form label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #444;
+        }
+        form input[type="text"], form input[type="tel"], form input[type="email"], form select, form textarea {
+            width: calc(100% - 22px); /* Adjust for padding */
+            padding: 12px;
+            margin-top: 4px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background: #fdfdfd;
+        }
+        form button[type="submit"] {
+            margin-top: 25px;
+            width: 100%;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #eafafa;
+            font-weight: 600;
+            color: #333;
+        }
+        td {
+            background-color: #fff;
+        }
+
+        /* FAQ Styling */
+        dl.faq dt {
+            font-weight: 700;
+            margin-top: 25px;
+            cursor: pointer;
+            color: #00a8a8;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        dl.faq dd {
+            margin-left: 0;
+            margin-top: 10px;
+            color: #555;
+            padding-bottom: 15px;
+        }
+        dl.faq dd p {
+            margin-top: 0;
+        }
+
+        /* Footnote/Sources Styling */
+        .source-links {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 30px;
+        }
+        .source-links ul {
+            padding-left: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            nav a { margin: 0 10px; font-size: 0.9rem; }
+            section { padding: 15px; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+        }
+    </style>
+
+    <!-- JSON-LD Schema for LocalBusiness & OfferCatalog -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Service",
+      "name":"34평 아파트 인테리어 견적 서비스",
+      "description":"34평형 아파트 리모델링, 올수리, 부분 인테리어 비용 상담 및 견적 안내",
+      "provider":{
+        "@type":"Organization",
+        "name":"인테리어 비용 분석 센터",
+        "url":"https://www.yourdomain.kr/"
+      },
+      "areaServed":{
+        "@type":"City",
+        "name":"전국"
+      },
+      "hasOfferCatalog":{
+        "@type":"OfferCatalog",
+        "name":"34평 인테리어 옵션",
+        "itemListElement":[
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"올수리 인테리어"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"부분 인테리어 (주방/욕실)"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"친환경 자재 인테리어"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"가성비 인테리어"}}
+        ]
+      }
+    }
+    </script>
+</head>
+<body>
+
+<!-- Header Section -->
+<header id="상단">
+    <h1>34평 아파트 인테리어 비용 2026년 가이드: <br class="mobile-break"> 평당 평균 금액 분석 및 지역별 견적 비교</h1>
+    <p><strong>내돈내산 후기 기반, 2026년 최신 물가 반영한 34평 인테리어 예상 금액을 지금 확인하세요.</strong></p>
+    <a href="#무료견적신청" class="cta">무료 견적 신청 및 맞춤 상담</a>
+</header>
+
+<!-- Navigation Bar -->
+<nav>
+    <a href="#비용개요">비용 개요 및 구성</a>
+    <a href="#상세견적분석">상세 견적 분석 (2026)</a>
+    <a href="#지역별비교">지역별 비용 비교</a>
+    <a href="#절약팁">비용 절약 팁</a>
+    <a href="#무료견적신청">무료 견적 신청</a>
+    <a href="#자주묻는질문">자주 묻는 질문</a>
+</nav>
+
+<!-- Main Content Section 1: Overview and Cost Factors -->
+<section id="비용개요" aria-label="34평 인테리어 비용 개요">
+    <h2>34평 아파트 인테리어 비용 개요: 평균 금액을 결정하는 5가지 요소</h2>
+    <p>34평(약 112㎡) 아파트는 국내에서 가장 보편적인 주거 형태로, 인테리어 수요가 높습니다. 2026년 기준 34평 아파트 인테리어 비용은 천차만별입니다. 흔히 포털 검색창에 "34평 아파트 인테리어 비용 얼마예요?"라고 검색하지만, 견적은 최소 수백만원부터 수천만원에 이르기까지 폭이 넓습니다. 이는 인테리어의 범위와 자재 선택, 지역에 따라 크게 달라지기 때문입니다. 정확한 예상 금액을 산출하려면 다음 5가지 핵심 요소를 반드시 고려해야 합니다.</p>
+
+    <div class="info-card">
+        <h3>1. 인테리어 범위 (올수리 vs. 부분수리)</h3>
+        <p>인테리어 비용을 결정하는 가장 큰 요인입니다. <strong>올수리(Full Renovation)</strong>는 샷시 교체, 욕실 2개 전체 수리, 주방 가구 교체, 바닥재 및 벽지 교체를 포함하며, 34평의 경우 기본 공사 범위가 넓습니다. 반면 <strong>부분수리(Partial Renovation)</strong>는 낡은 욕실이나 주방 가구만 교체하는 등 필요한 부분만 진행하여 비용을 절감할 수 있습니다. 2026년 기준 올수리는 일반적으로 부분수리에 비해 2배 이상의 비용이 발생할 수 있습니다.</p>
+        <p><strong>올수리 장점:</strong> 새 아파트처럼 완벽한 변화, 단열/방음/수납 기능 향상, 통일감 있는 디자인. <strong>단점:</strong> 높은 초기 투자 비용, 긴 공사 기간. <strong>부분수리 장점:</strong> 저렴한곳 찾기 용이, 단기간 공사, 예산에 맞춰 유연한 진행. <strong>단점:</strong> 전체적인 디자인 불일치 가능성, 근본적인 문제(단열/누수) 해결 불가.</p>
+
+        <h3>2. 자재 등급 및 브랜드 선택</h3>
+        <p>자재의 등급은 비용 차이의 핵심입니다. 저가형(실속형), 중급형(프리미엄), 고급형(럭셔리)에 따라 견적이 크게 달라집니다. 특히 주방 싱크대(LX, 한샘 등), 욕실 도기(대림바스, 아메리칸 스탠다드 등), 바닥재(강마루, 원목마루 등)는 브랜드와 종류에 따라 가격 차이가 큽니다. 예를 들어, 원목마루는 강마루에 비해 2배 이상 비싸며, 욕실 타일도 수입 타일은 국산 타일 대비 2~3배의 금액이 발생할 수 있습니다.</p>
+
+        <h3>3. 공사 기간 및 인건비</h3>
+        <p>인테리어 공사 기간은 보통 34평 아파트 기준 2주에서 4주가 소요됩니다. 2026년 건설 현장 인건비 상승으로 인해 공사 기간이 길어질수록 비용이 증가합니다. 특히 욕실 철거 및 방수 작업, 목공 작업, 샷시 시공 등은 전문 인력의 숙련도가 중요하며, 인건비가 높게 책정됩니다. 사전에 정확한 공정표를 확인하고 공사 기간을 협의해야 예상 금액을 초과하는 것을 막을 수 있습니다.</p>
+
+        <h3>4. 철거 및 폐기물 처리 비용</h3>
+        <p>인테리어 비용에서 간과하기 쉬운 항목입니다. 기존 자재(바닥재, 벽지, 타일 등) 철거 및 폐기물 처리는 비용에 포함됩니다. 특히 샷시 교체, 욕실 전체 철거, 베란다 확장 공사 등은 폐기물 양이 많아져 비용이 증가합니다. 34평 아파트의 경우 폐기물 처리 비용만 수십만원에 달할 수 있습니다.</p>
+
+        <h3>5. 디자인 및 설계비</h3>
+        <p>전문 디자이너의 설계가 포함되는 인테리어는 비용이 추가됩니다. 디자이너의 전문성, 경력, 포트폴리오에 따라 설계비가 달라지며, 트렌디한 디자인을 원할 경우 설계비를 감수해야 합니다. "내돈내산" 후기를 보면 디자인을 직접 하면서 비용을 절약한 경우도 많습니다.</p>
+    </div>
+</section>
+
+<!-- Main Content Section 2: Detailed Cost Analysis by Area (The core SEO content) -->
+<section id="상세견적분석" aria-label="34평 인테리어 상세 견적 분석">
+    <h2>34평 아파트 인테리어 상세 견적 분석 (2026년 예상)</h2>
+    <p>34평 아파트의 인테리어 비용은 어떤 부분을 선택하느냐에 따라 크게 달라집니다. 다음은 2026년 기준 34평 아파트 올수리 시 각 공간별 예상 금액을 분석한 표와 상세 내역입니다. 이는 일반적인 평균 금액이며, 실제 견적은 방문 상담을 통해 확정됩니다.</p>
+
+    <div class="info-card">
+        <h3>34평 아파트 올수리 예상 비용 비교표 (2026년 기준)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>항목</th>
+                    <th>실속형 (저가형)</th>
+                    <th>표준형 (가성비)</th>
+                    <th>고급형 (프리미엄)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>공사 범위</td>
+                    <td>부분 수리 (주방/욕실 1)</td>
+                    <td>올수리 (샷시 미포함)</td>
+                    <td>올수리 (샷시 포함, 고급 자재)</td>
+                </tr>
+                <tr>
+                    <td><strong>예상 금액 (총액)</strong></td>
+                    <td><strong>800만원 ~ 1,500만원</strong></td>
+                    <td><strong>2,000만원 ~ 3,000만원</strong></td>
+                    <td><strong>3,500만원 ~ 5,000만원 이상</strong></td>
+                </tr>
+                <tr>
+                    <td>평당 가격 (대략)</td>
+                    <td>평당 25만 ~ 45만원</td>
+                    <td>평당 60만 ~ 90만원</td>
+                    <td>평당 100만 ~ 150만원 이상</td>
+                </tr>
+                <tr>
+                    <td>자재 등급</td>
+                    <td>국산 기본 등급</td>
+                    <td>국산 중급(가성비) 브랜드</td>
+                    <td>수입산/고급 브랜드</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>주방 인테리어 (싱크대, 타일, 조명) 상세 분석</h3>
+    <p>주방은 34평 인테리어에서 비용 비중이 가장 큰 부분 중 하나입니다. 싱크대 교체, 타일 작업, 주방 가전(후드, 인덕션 등) 설치에 따라 <strong>주방 인테리어 비용</strong>이 크게 달라집니다. 2026년 주방 가구 트렌드는 상부장을 없애고 하부장 중심으로 수납을 늘리는 '키친바흐' 스타일, 혹은 미니멀리즘 디자인이 인기를 끌고 있습니다.</p>
+    <p><strong>주방 비용 차이점 분석:</strong> 싱크대 상판의 경우, 인조대리석과 엔지니어드 스톤은 가격 차이가 큽니다. 엔지니어드 스톤은 내구성이 뛰어나고 고급스러운 외관을 제공하지만, 인조대리석 대비 1.5배~2배 이상의 금액이 필요합니다. 또한, 주방 타일도 기본 타일(300*600mm) 외에 테라조, 포세린 등 특수 타일을 사용할 경우 시공 난이도와 자재비가 증가합니다.</p>
+
+    <h3>욕실 인테리어 (타일, 도기, 수납장) 상세 분석</h3>
+    <p>34평 아파트는 보통 욕실 2개(안방/거실)를 포함합니다. 욕실은 물 사용 공간으로 방수 작업이 필수입니다. <strong>욕실 인테리어 비용</strong>은 타일 철거, 방수 작업, 타일 시공, 도기(세면대, 변기) 및 수전(수도꼭지) 교체, 욕실 수납장 설치로 구성됩니다. 욕실은 평당 인테리어 비용이 가장 높은 공간 중 하나입니다.</p>
+    <p><strong>욕실 비용 차이점 분석:</strong> 욕실 인테리어의 <strong>가장 큰 장점은 기능성 개선</strong>이지만, <strong>단점은 시공 후 하자가 발생하면 수리가 어렵다</strong>는 점입니다. 건식/습식 욕실 여부, 샤워 파티션 또는 욕조 설치 여부, 타일의 종류에 따라 비용이 달라집니다. 또한, 최근 유행하는 무광 포세린 타일은 시공 난이도가 높고 자재 단가가 비싸서 비용이 증가합니다.</p>
+
+    <h3>바닥재 및 벽지 인테리어 (거실, 방) 상세 분석</h3>
+    <p>거실과 방의 바닥재 및 벽지 선택은 전체적인 분위기를 좌우합니다. <strong>바닥재 비용</strong>은 자재의 종류(강마루, 강화마루, 원목마루, 타일, 장판)에 따라 가격 차이가 큽니다. 특히 2026년 트렌드는 강마루 시공이 일반적이지만, 고급형 인테리어에서는 원목마루나 포세린 타일로 시공합니다. <strong>강화마루는 저렴한곳</strong>을 찾는 소비자에게 적합하며, <strong>강마루는 내구성이 강하다는 장점</strong>이 있어 표준형 인테리어에 많이 사용됩니다.</p>
+    <p><strong>벽지 비용:</strong> 벽지는 실크벽지(합지)와 일반 합지 벽지로 나뉩니다. 실크벽지는 내구성이 좋고 디자인이 다양하며, 합지 벽지는 저렴한 가격이 <strong>가장 큰 장점</strong>입니다. 34평 아파트의 경우 벽지 전체 시공은 100~150만원 선으로 예상되지만, 수입 벽지나 벤자민무어 같은 페인팅 시공을 선택하면 2배 이상의 비용이 발생할 수 있습니다.</p>
+
+    <h3>샷시 (창호) 교체 및 조명/전기 공사</h3>
+    <p>샷시 교체는 34평 인테리어 비용에서 큰 비중을 차지합니다. 특히 오래된 아파트의 경우 단열 문제로 인해 샷시 교체가 필수적입니다. 샷시 교체 비용은 브랜드(LX Z:IN, 한샘 등)와 창호 등급(발코니 이중창, 단창 등)에 따라 크게 달라지며, 34평 올수리 시 샷시 교체 비용만으로도 1,000만원 이상의 예상 금액이 책정될 수 있습니다.</p>
+    <p><strong>조명 및 전기 공사:</strong> 조명은 인테리어의 분위기를 완성합니다. 매립등(다운라이트), 간접등, 팬던트 조명 등 다양한 조명 연출은 전기 공사를 수반하며, 콘센트 위치 변경, 스위치 교체 등도 인테리어 비용에 포함됩니다. 34평 인테리어에서 조명/전기 공사는 150만원에서 300만원의 평균 금액이 발생합니다.</p>
+    <div class="info-card">
+        <h4><span style="color:red;">주의:</span> 2026년 인테리어 비용 변동성</h4>
+        <p>2026년 인테리어 시장은 자재비(특히 원자재 가격)와 인건비 변동성이 매우 높습니다. 이는 국제 정세, 환율 변동, 건설 경기 등에 민감하게 반응합니다. 따라서 인테리어 견적을 받을 때 견적 유효 기간을 반드시 확인하고, 가급적 이른 시기에 계약을 확정하는 것이 <strong>저렴한곳</strong>을 찾는 방법입니다.</p>
+    </div>
+</section>
+
+<!-- Main Content Section 3: Regional Cost Comparison (for regional SEO keywords) -->
+<section id="지역별비교" aria-label="지역별 인테리어 비용 비교">
+    <h2>전국 지역별 34평 아파트 인테리어 비용 차이: 평균 금액 비교</h2>
+    <p>34평 아파트 인테리어 비용은 지역별 물가와 인건비 수준에 따라 큰 차이를 보입니다. 특히 수도권(서울, 경기, 인천)은 인건비와 자재 유통비용이 높아 지방에 비해 10%~20%가량 높은 평균 금액이 형성됩니다.</p>
+    <p><strong>수도권:</strong> <strong>서울 34평 인테리어 비용</strong>은 전국에서 가장 높습니다. 강남, 서초, 송파 등 고가 아파트가 밀집한 지역은 고급 자재 수요가 많아 견적이 더욱 높아집니다. <strong>경기 34평 인테리어</strong>(수원, 용인, 성남, 분당, 일산, 고양, 하남 등) 역시 서울과 비슷한 수준을 유지하며, <strong>인천 34평 인테리어</strong> 비용도 신축 아파트 입주 시기에 따라 변동성이 큽니다.</p>
+    <p><strong>광역시:</strong> <strong>부산 34평 인테리어 비용</strong>과 <strong>대구 34평 인테리어 비용</strong>은 수도권 다음으로 높은 수준입니다. 특히 부산 해운대나 대구 수성구 등 핵심 지역은 인테리어 업체 순위 경쟁이 치열하여 견적 편차가 큽니다. <strong>광주 34평 인테리어</strong>, <strong>대전 34평 인테리어</strong>, <strong>울산 34평 인테리어</strong>, <strong>세종 34평 인테리어</strong> 등도 자체적인 시장을 형성하고 있습니다.</p>
+    <p><strong>기타 지역:</strong> <strong>강원 34평 인테리어 비용</strong>(춘천, 원주, 강릉 등), <strong>충북 34평 인테리어 비용</strong>(청주, 충주 등), <strong>충남 34평 인테리어 비용</strong>(천안, 아산 등), <strong>경북 34평 인테리어 비용</strong>(포항, 구미, 경산 등), <strong>경남 34평 인테리어 비용</strong>(창원, 김해, 진주 등), <strong>전북 34평 인테리어 비용</strong>(전주, 군산 등), <strong>전남 34평 인테리어 비용</strong>(순천, 여수 등), <strong>제주 34평 인테리어 비용</strong>은 수도권에 비해 상대적으로 낮은 인건비로 형성되지만, 자재 운반비나 현장 상황에 따라 차이가 발생할 수 있습니다.</p>
+    <div class="info-card">
+        <h4>지역별 인테리어 견적 비교 (2026년 가상 데이터)</h4>
+        <p>평균 금액 비교 (올수리, 표준형 기준)</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>지역</th>
+                    <th>평균 예상 금액 (만원)</th>
+                    <th>특징</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>서울/경기</td>
+                    <td>2,800만원 ~ 3,200만원</td>
+                    <td>높은 인건비, 고급 자재 수요 多</td>
+                </tr>
+                <tr>
+                    <td>부산/대구</td>
+                    <td>2,500만원 ~ 2,900만원</td>
+                    <td>수도권 다음으로 높은 견적</td>
+                </tr>
+                <tr>
+                    <td>충청/전라/경상권</td>
+                    <td>2,300만원 ~ 2,700만원</td>
+                    <td>평균적인 인건비, 경쟁 심화</td>
+                </tr>
+                <tr>
+                    <td>강원/제주</td>
+                    <td>2,400만원 ~ 2,800만원</td>
+                    <td>자재 운반비 변동성 높음</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Main Content Section 4: Saving Tips and Pitfalls -->
+<section id="절약팁" aria-label="34평 인테리어 비용 절약 팁">
+    <h2>34평 인테리어 비용 절약 팁 및 장단점 비교</h2>
+    <p><strong>저렴한곳</strong>을 찾는 것도 중요하지만, 인테리어는 사후 관리가 더 중요합니다. 무턱대고 싼 곳만 찾다가는 하자 보수 문제로 더 큰 비용을 지출할 수 있습니다. 다음은 합리적인 인테리어를 위한 비용 절약 팁과 <strong>장단점 비교</strong>입니다.</p>
+
+    <div class="info-card">
+        <h3>1. 셀프 인테리어 vs. 올 인테리어 (내돈내산 vs. 업체 맡김)</h3>
+        <p><strong>내돈내산 셀프 인테리어</strong>는 비용을 획기적으로 줄일 수 있는 방법이지만, 34평 아파트의 경우 난이도가 매우 높습니다. 특히 욕실 방수나 샷시 교체, 전기 공사는 전문 기술이 필요하므로 부분적으로 전문가에게 맡기는 것을 추천합니다. <strong>내돈내산 후기</strong>를 보면, 직접 자재를 구매하고 전문 인력(목수, 타일공 등)을 섭외하는 '반셀프 인테리어'가 가장 많은 비용 절약 효과를 가져왔다는 평가가 많습니다.</p>
+        <p><strong>올 인테리어 장점:</strong> 전문 업체가 모든 것을 책임지고 진행하므로 편리함, 완성도 높은 결과물, 하자 보수 용이. <strong>단점:</strong> 상대적으로 높은 비용, 업체 선정 시 신뢰도 확인 필수. <strong>반셀프 인테리어 장점:</strong> 비용 절감 효과, 자재 선택의 자유로움. <strong>단점:</strong> 공정 관리의 어려움, 시간 소요 많음, 하자 발생 시 책임 소재 불분명.</p>
+
+        <h3>2. 불필요한 공사 항목 제거 (차이점 분석)</h3>
+        <p><strong>인테리어 비용</strong>을 줄이려면 불필요한 공사를 과감하게 제외해야 합니다. 샷시 교체 여부를 결정할 때 단열 성능에 문제가 없다면 샷시 교체를 생략할 수 있습니다. 또한, 주방 싱크대 상판만 교체하거나 욕실 타일 위에 덧방 시공을 하는 것도 비용을 줄이는 방법입니다. <strong>장단점 차이점</strong>을 비교하여 본인의 상황에 맞는 공사 범위를 설정하세요.</p>
+
+        <h3>3. 여러 업체 견적 비교 (순위 및 추천)</h3>
+        <p>인테리어 업체 선정 시 최소 3~5곳 이상의 견적을 비교하는 것이 필수입니다. 업체마다 견적서 구성이 다르므로 상세 견적 항목을 꼼꼼히 확인해야 합니다. 견적서에 포함된 자재 브랜드와 규격을 명확히 확인하여 <strong>저렴한곳</strong>을 찾으세요. 또한, 인테리어 플랫폼의 <strong>순위 및 추천</strong>을 참고하여 업체별 포트폴리오를 확인하는 것도 중요합니다.</p>
+    </div>
+
+    <div class="source-links">
+        <h4>참고 외부 사이트 (공신력 있는 정보 출처)</h4>
+        <ul>
+            <li>[1] 통계청, 인구주택총조사 통계 (아파트 규모별 현황)</li>
+            <li>[2] 국토교통부, 주택건설기준 등에 관한 규정 (공사 기준 참고)</li>
+            <li>[3] LX하우시스 공식 홈페이지 (자재 정보 및 가격 비교)</li>
+            <li>[4] 대한건축사협회, 건축 관련 정보 및 법규 (설계 관련)</li>
+            <li>[5] 나무위키, 인테리어 관련 정보 (자재, 용어 해설)</li>
+            <li>[6] 주택도시보증공사 (HUG) 하자보수 관련 정보</li>
+            <li>[7] 한국에너지공단, 창호 등급 기준 (단열 성능 관련)</li>
+            <li>[8] 한국전기안전공사, 전기 설비 안전 기준</li>
+            <li>[9] 한국건설기술연구원, 건설 자재 가격 동향 분석</li>
+            <li>[10] 국토교통부, 공동주택관리정보시스템 K-apt (아파트 공사 정보)</li>
+            <li>[11] 한국소비자원, 인테리어 공사 관련 소비자 피해 사례 및 주의사항</li>
+            <li>[12] Naver Place, 인테리어 업체 순위 및 리뷰</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Main Content Section 5: Quote Request Form -->
+<section id="무료견적신청" aria-label="무료 견적 신청 및 맞춤 상담">
+    <h2>34평 아파트 인테리어 무료 견적 신청</h2>
+    <p>아래 폼을 작성해주시면 2026년 최신 물가를 반영한 맞춤형 <strong>34평 인테리어 예상 금액</strong>을 안내해 드립니다. <strong>저렴한곳</strong>을 찾는 소비자부터 <strong>고급형 인테리어</strong>를 원하는 분까지 모두 상담 가능합니다.</p>
+    <form action="/submit-estimate" method="POST" aria-describedby="견적폼설명">
+        <p id="견적폼설명">정확한 상담을 위해 최대한 상세히 기입해주세요.</p>
+
+        <label for="type">이사/입주 여부</label>
+        <select id="type" name="type" required>
+            <option value="">선택하세요</option>
+            <option value="입주예정">신축 아파트 입주 예정 (인테리어 필요)</option>
+            <option value="거주중">거주 중 리모델링 예정 (짐 보관/이사 필요)</option>
+            <option value="매매후">매매 후 이사 예정 (올수리 필요)</option>
+        </select>
+
+        <label for="region">지역 (시/도 단위)</label>
+        <select id="region" name="region" required>
+            <option value="">선택하세요</option>
+            <option value="서울">서울</option>
+            <option value="경기">경기</option>
+            <option value="인천">인천</option>
+            <option value="부산">부산</option>
+            <option value="대구">대구</option>
+            <option value="대전">대전</option>
+            <option value="광주">광주</option>
+            <option value="울산">울산</option>
+            <option value="세종">세종</option>
+            <option value="강원">강원</option>
+            <option value="충북">충북</option>
+            <option value="충남">충남</option>
+            <option value="경북">경북</option>
+            <option value="경남">경남</option>
+            <option value="전북">전북</option>
+            <option value="전남">전남</option>
+            <option value="제주">제주</option>
+        </select>
+
+        <label for="scope">인테리어 범위</label>
+        <select id="scope" name="scope" required>
+            <option value="">선택하세요</option>
+            <option value="올수리">전체 올수리 (샷시 포함)</option>
+            <option value="올수리_미포함">전체 올수리 (샷시 미포함)</option>
+            <option value="부분수리_주방">부분수리 (주방/싱크대 중심)</option>
+            <option value="부분수리_욕실">부분수리 (욕실 2개 중심)</option>
+            <option value="부분수리_바닥">부분수리 (바닥/도배 중심)</option>
+        </select>
+
+        <label for="style">희망 디자인 스타일 (견적 차이 발생 요소)</label>
+        <select id="style" name="style">
+            <option value="">선택하세요</option>
+            <option value="미니멀리즘">미니멀리즘 (화이트톤, 간결함)</option>
+            <option value="우드앤화이트">우드 앤 화이트 (따뜻한 감성)</option>
+            <option value="모던_내추럴">모던 내추럴 (고급 자재, 자연 소재)</option>
+            <option value="유럽풍">유럽풍 (클래식/빈티지)</option>
+            <option value="믹스매치">믹스매치 (개성 강한 조합)</option>
+        </select>
+
+        <label for="budget">예상 예산 범위 (만원)</label>
+        <input type="number" id="budget" name="budget" placeholder="예: 2500" min="500" max="10000" required />
+
+        <label for="date">공사 희망 시작일</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="email">연락처 및 이메일</label>
+        <input type="email" id="email" name="email" placeholder="example@email.com" required />
+
+        <button type="submit" class="cta">견적 요청하기</button>
+    </form>
+</section>
+
+<!-- Main Content Section 6: FAQ -->
+<section id="자주묻는질문" aria-label="자주 묻는 질문 FAQ">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    <dl class="faq">
+        <dt>Q. 34평 인테리어 비용의 평균 금액은 얼마인가요?</dt>
+        <dd>A. 2026년 기준 34평 아파트의 전체 올수리(샷시 미포함) 평균 금액은 약 2,000만원에서 3,000만원 사이로 형성됩니다. 샷시까지 포함하면 3,500만원 이상을 예상해야 합니다. 부분 수리는 800만원부터 시작합니다.</dd>
+
+        <dt>Q. 인테리어 견적서에서 "가장 큰 차이점"을 보이는 항목은 무엇인가요?</dt>
+        <dd>A. 자재의 등급과 샷시 교체 여부입니다. 특히 욕실 타일이나 주방 싱크대 상판의 재질(인조대리석 vs. 엔지니어드 스톤)에 따라 견적이 크게 달라집니다. 여러 업체 견적을 비교할 때 자재 명세를 꼼꼼히 확인하여 <strong>차이점</strong>을 파악해야 합니다.</dd>
+
+        <dt>Q. <strong>저렴한곳</strong>을 찾으려면 어떻게 해야 하나요?</dt>
+        <dd>A. <strong>저렴한곳</strong>을 찾기 위해선 '반셀프 인테리어'를 고려해보세요. 직접 자재를 구매하고 전문 인력만 고용하면 비용을 크게 절감할 수 있습니다. 다만 공정 관리가 어렵다는 <strong>단점</strong>이 있습니다. 또한, 성수기를 피하고 비수기(겨울철)에 공사를 진행하면 인건비가 소폭 낮아질 수 있습니다.</dd>
+
+        <dt>Q. 인테리어 시공 후 하자가 발생하면 어떻게 처리되나요?</dt>
+        <dd>A. 정식 계약을 체결한 업체는 하자 보수 기간을 명시합니다. 일반적으로 시공 후 1년 이내 발생하는 하자에 대해 무상 보수를 지원하며, 샷시 등 일부 품목은 2년 이상 보증하는 업체도 많습니다. 계약서에 하자 보수 기간을 명확히 기재해야 합니다.</dd>
+    </dl>
+</section>
+
+
+
+  
